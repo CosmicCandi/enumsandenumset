@@ -3,6 +3,7 @@ package com.fdmgroup.cardenumexample;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,7 +13,7 @@ import org.junit.Test;
 
 public class DeckTest {
 
-	ArrayList<Card> deck;
+	ArrayList<Card> deck = new ArrayList<>();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,7 +33,18 @@ public class DeckTest {
 
 	@Test
 	public void test_ADeckContains52Cards() {
-		assertEquals(52, deck.getSize());
+		buildDeck();
+		assertEquals(52, deck.size());
+	}
+
+	public ArrayList<Card> buildDeck() {
+		for (Suit suit : Suit.values()) {
+			for (Face face : Face.values()) {
+				Card createdCard = new Card(suit, face);
+				deck.add(createdCard);
+			}
+		}
+		return deck;
 	}
 
 }
